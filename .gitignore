@@ -39,3 +39,18 @@
 
 # debug information files
 *.dwo
+
+
+
+.idea/
+cmake-build-debug/
+cmake-build-release/
+cmake-build-*/
+
+# Pliki systemowe
+.DS_Store
+Thumbs.db
+
+# Inne pliki pomocnicze
+*.swp
+*~
