@@ -11,6 +11,7 @@ set(NETSIM_SOURCES
         src/storage_types.cpp
         src/nodes.cpp
         src/helpers.cpp
+	src/factory.cpp
 )
 
 
@@ -29,6 +30,7 @@ FetchContent_MakeAvailable(googletest)
 add_executable(NetSim_Tests
         #tests/tests_1_package.cpp
         tests/tests_2_nodes.cpp
+	tests/tests_3_factory.cpp
         ${NETSIM_SOURCES}
 )
 

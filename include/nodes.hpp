@@ -15,9 +15,9 @@
 #include <map>
 
 
-// enum class ReceiverType {
-//     WORKER, STOREHOUSE
-// };
+enum class ReceiverType {
+     WORKER, STOREHOUSE
+};
 
 class IPackageReceiver {
 public:
@@ -30,7 +30,7 @@ public:
     virtual IPackageStockpile::const_iterator end() const = 0;
 
 
-    //virtual ReceiverType get_receiver_type() const = 0;
+    virtual ReceiverType get_receiver_type() const = 0;
 
     virtual ~IPackageReceiver() = default;
 };
@@ -96,7 +96,7 @@ public:
     void receive_package(Package&& p) override;
     ElementID get_id() const override { return id_; }
 
-    //ReceiverType get_receiver_type() const override { return ReceiverType::STOREHOUSE; }
+    ReceiverType get_receiver_type() const override { return ReceiverType::STOREHOUSE; }
 
 
     IPackageStockpile::const_iterator cbegin() const override { return stockpile_->cbegin(); }
@@ -120,9 +120,11 @@ public:
 
     void receive_package(Package&& p) override;
     ElementID get_id() const override { return id_; }
+    ReceiverType get_receiver_type() const override { return ReceiverType::WORKER; }
 
-    //ReceiverType get_receiver_type() const override { return ReceiverType::WORKER; }
+    IPackageQueue* get_queue() const { return queue_.get(); }
 
+    const std::optional<Package>& get_sending_buffer() const { return sending_buffer_; }
 
     const std::optional<Package>& get_processing_buffer() const { return processing_buffer_; }
 
